@@ -11,8 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// import { useMemo } from 'react';
-import { FormatOptions, formatValue } from '@perses-dev/core';
+//import { useMemo } from 'react';
+// import { FormatOptions, formatValue } from '@perses-dev/core';
 import { use } from 'echarts/core';
 import { PieChart as EChartsPieChart } from 'echarts/charts';
 import { GridComponent, DatasetComponent, TitleComponent, TooltipComponent } from 'echarts/components';
@@ -20,7 +20,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { Box } from '@mui/material';
 import { useChartsTheme } from '../context/ChartsProvider';
 import { EChart } from '../EChart';
-import { ModeOption } from '../ModeSelector';
+// import { ModeOption } from '../ModeSelector';
 // import { getFormattedAxis } from '../utils';
 
 use([EChartsPieChart, GridComponent, DatasetComponent, TitleComponent, TooltipComponent, CanvasRenderer]);
@@ -33,16 +33,13 @@ export interface PieChartData {
 }
 
 export interface PieChartProps {
-  radius: number;
   width: number;
   height: number;
   data: PieChartData[] | null;
-  format?: FormatOptions;
-  mode?: ModeOption;
 }
 
 export function PieChart(props: PieChartProps) {
-  const { width, height, radius, data, format = { unit: 'decimal' }, mode = 'value' } = props;
+  const { width, height, data } = props;
   const chartsTheme = useChartsTheme();
 
   const option = {

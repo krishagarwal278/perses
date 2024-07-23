@@ -11,10 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { BarChartData, SortOption } from '@perses-dev/components';
+import { PieChartData, SortOption } from '@perses-dev/components';
 import { DEFAULT_SORT } from './pie-chart-model';
 
-export function calculatePercentages(data: BarChartData[]) {
+export function calculatePercentages(data: PieChartData[]) {
   const sum = data.reduce((accumulator, { value }) => accumulator + (value ?? 0), 0);
   return data.map((seriesData) => {
     const percentage = ((seriesData.value ?? 0) / sum) * 100;
@@ -25,7 +25,7 @@ export function calculatePercentages(data: BarChartData[]) {
   });
 }
 
-export function sortSeriesData(data: BarChartData[], sortOrder: SortOption = DEFAULT_SORT) {
+export function sortSeriesData(data: PieChartData[], sortOrder: SortOption = DEFAULT_SORT) {
   if (sortOrder === 'asc') {
     // sort in ascending order by value
     return data.sort((a, b) => {

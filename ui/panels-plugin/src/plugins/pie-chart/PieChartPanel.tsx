@@ -16,14 +16,15 @@ import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { CalculationType, CalculationsMap } from '@perses-dev/core';
 import { useDataQueries, PanelProps } from '@perses-dev/plugin-system';
+// import { SeriesData } from 'echarts/types/dist/shared';
 import { PieChartOptions } from './pie-chart-model';
 import { calculatePercentages, sortSeriesData } from './utils';
 
 export type PieChartPanelProps = PanelProps<PieChartOptions>;
 
-export function PieChartPanel(props) {
+export function PieChartPanel(props: PieChartPanelProps) {
   const {
-    spec: { calculation, format, sort, mode },
+    spec: { calculation, sort, mode },
     contentDimensions,
   } = props;
 
@@ -38,13 +39,14 @@ export function PieChartPanel(props) {
     for (const result of queryResults) {
       // Skip queries that are still loading or don't have data
       if (result.isLoading || result.isFetching || result.data === undefined) continue;
-
       for (const seriesData of result.data.series) {
         const series = {
           value: calculate(seriesData.values) ?? null,
           name: seriesData.formattedName ?? '',
         };
+        console.log('Series Data Value', seriesData.values);
         pieChartData.push(series);
+        console.log({ series });
       }
     }
 
@@ -67,10 +69,9 @@ export function PieChartPanel(props) {
   return (
     <Box sx={{ padding: `${PADDING}px` }}>
       <PieChart
-      // width={contentDimensions.width - PADDING * 2}
-      // height={contentDimensions.height - PADDING * 2}
-      // format={format}
-      // mode={mode}
+        width={contentDimensions.width - PADDING * 2}
+        height={contentDimensions.height - PADDING * 2}
+        data={pieChartData}
       />
     </Box>
   );

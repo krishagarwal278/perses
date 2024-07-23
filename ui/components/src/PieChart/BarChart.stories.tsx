@@ -12,38 +12,38 @@
 // limitations under the License.
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { BarChart, PieChartData } from '@perses-dev/components';
+import { PieChart, PieChartData } from '@perses-dev/components';
 import { waitForStableCanvas } from '@perses-dev/storybook';
 
 const DEFAULT_DATA: PieChartData[] = [
   {
-    label: 'pool_sb1 Quota',
+    name: 'pool_sb1 Quota',
     value: 2256,
   },
   {
-    label: 'pool_sb2 Quota',
+    name: 'pool_sb2 Quota',
     value: 4938,
   },
   {
-    label: 'pool_sb3 Quota',
+    name: 'pool_sb3 Quota',
     value: 2625,
   },
   {
-    label: 'pool_sb4 Quota',
+    name: 'pool_sb4 Quota',
     value: 6314,
   },
   {
-    label: 'pool_sb5 Quota',
+    name: 'pool_sb5 Quota',
     value: 1200,
   },
   {
-    label: 'pool_sb6 Quota',
+    name: 'pool_sb6 Quota',
     value: 1479,
   },
 ];
 
-const meta: Meta<typeof BarChart> = {
-  component: BarChart,
+const meta: Meta<typeof PieChart> = {
+  component: PieChart,
   parameters: {
     happo: {
       beforeScreenshot: async () => {
@@ -55,14 +55,14 @@ const meta: Meta<typeof BarChart> = {
 
 export default meta;
 
-type Story = StoryObj<typeof BarChart>;
+type Story = StoryObj<typeof PieChart>;
 
 export const Primary: Story = {
   args: {
     width: 600,
     height: 300,
     data: DEFAULT_DATA,
-    format: { unit: 'decimal', shortValues: false },
+    // format: { unit: 'decimal', shortValues: false },
   },
 };
 
@@ -71,6 +71,6 @@ export const NoData: Story = {
     width: 600,
     height: 300,
     data: undefined,
-    format: { unit: 'decimal', shortValues: false },
+    // format: { unit: 'decimal', shortValues: false },
   },
 };
