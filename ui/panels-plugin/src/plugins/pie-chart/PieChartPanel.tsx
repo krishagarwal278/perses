@@ -1,4 +1,4 @@
-// Copyright 2023 The Perses Authors
+//Copyright 2023 The Perses Authors
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { BarChart, BarChartData, LoadingOverlay, useChartsTheme } from '@perses-dev/components';
+import { PieChart, PieChartData, LoadingOverlay, useChartsTheme } from '@perses-dev/components';
 import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { CalculationType, CalculationsMap } from '@perses-dev/core';
 import { useDataQueries, PanelProps } from '@perses-dev/plugin-system';
-import { BarChartOptions } from './bar-chart-model';
+import { PieChartOptions } from './pie-chart-model';
 import { calculatePercentages, sortSeriesData } from './utils';
 
-export type BarChartPanelProps = PanelProps<BarChartOptions>;
+export type PieChartPanelProps = PanelProps<PieChartOptions>;
 
-export function BarChartPanel(props: BarChartPanelProps) {
+export function PieChartPanel(props) {
   const {
     spec: { calculation, format, sort, mode },
     contentDimensions,
@@ -31,11 +31,10 @@ export function BarChartPanel(props: BarChartPanelProps) {
   const PADDING = chartsTheme.container.padding.default;
 
   const { queryResults, isLoading, isFetching } = useDataQueries('TimeSeriesQuery'); // gets data queries from a context provider, see DataQueriesProvider
-  console.log(queryResults, isLoading, isFetching);
-  const barChartData: BarChartData[] = useMemo(() => {
+  console.log(queryResults);
+  const pieChartData: PieChartData[] = useMemo(() => {
     const calculate = CalculationsMap[calculation as CalculationType];
-    const barChartData: BarChartData[] = [];
-    console.log(queryResults);
+    const pieChartData: PieChartData[] = [];
     for (const result of queryResults) {
       // Skip queries that are still loading or don't have data
       if (result.isLoading || result.isFetching || result.data === undefined) continue;
@@ -43,20 +42,20 @@ export function BarChartPanel(props: BarChartPanelProps) {
       for (const seriesData of result.data.series) {
         const series = {
           value: calculate(seriesData.values) ?? null,
-          label: seriesData.formattedName ?? '',
+          name: seriesData.formattedName ?? '',
         };
-        barChartData.push(series);
+        pieChartData.push(series);
       }
     }
 
-    const sortedBarChartData = sortSeriesData(barChartData, sort);
+    const sortedBarChartData = sortSeriesData(pieChartData, sort);
     if (mode === 'percentage') {
       return calculatePercentages(sortedBarChartData);
     } else {
       return sortedBarChartData;
     }
   }, [queryResults, sort, mode, calculation]);
-
+  console.log(pieChartData);
   if (queryResults[0]?.error) throw queryResults[0]?.error;
 
   if (contentDimensions === undefined) return null;
@@ -67,12 +66,11 @@ export function BarChartPanel(props: BarChartPanelProps) {
 
   return (
     <Box sx={{ padding: `${PADDING}px` }}>
-      <BarChart
-        width={contentDimensions.width - PADDING * 2}
-        height={contentDimensions.height - PADDING * 2}
-        data={barChartData}
-        format={format}
-        mode={mode}
+      <PieChart
+      // width={contentDimensions.width - PADDING * 2}
+      // height={contentDimensions.height - PADDING * 2}
+      // format={format}
+      // mode={mode}
       />
     </Box>
   );

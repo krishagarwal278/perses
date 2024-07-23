@@ -52,7 +52,6 @@ export function BarChart(props: BarChartProps) {
     data.map((d) => {
       source.push([d.label, d.value]);
     });
-
     return {
       title: {
         show: false,
