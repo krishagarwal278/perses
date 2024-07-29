@@ -13,7 +13,7 @@
 
 import { ModeOption, SortOption } from '@perses-dev/components';
 import { CalculationType, DEFAULT_CALCULATION, Definition, FormatOptions } from '@perses-dev/core';
-import { OptionsEditorProps } from '@perses-dev/plugin-system';
+import { OptionsEditorProps, LegendSpecOptions } from '@perses-dev/plugin-system';
 
 export const DEFAULT_FORMAT: FormatOptions = { unit: 'decimal', shortValues: true };
 export const DEFAULT_SORT: SortOption = 'desc';
@@ -30,10 +30,15 @@ export interface BarChartDefinition extends Definition<PieChartOptions> {
  * The Options object type supported by the BarChart panel plugin.
  */
 export interface PieChartOptions {
+  thresholds: import('/Users/kragarwa/perses/ui/core/dist/index').ThresholdOptions;
+  querySettings: Array<
+    import('/Users/kragarwa/perses/ui/panels-plugin/src/plugins/time-series-chart/time-series-chart-model').QuerySettingsOptions
+  >;
   calculation: CalculationType;
   format?: FormatOptions;
   sort?: SortOption;
   mode?: ModeOption;
+  legend?: LegendSpecOptions;
 }
 
 export type PieChartOptionsEditorProps = OptionsEditorProps<PieChartOptions>;
@@ -45,6 +50,7 @@ export function createInitialBarChartOptions(): PieChartOptions {
   return {
     calculation: DEFAULT_CALCULATION,
     format: DEFAULT_FORMAT,
+    thresholds: DEFAULT_FORMAT,
     sort: DEFAULT_SORT,
     mode: DEFAULT_MODE,
   };

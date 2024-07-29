@@ -15,7 +15,13 @@
 // import { FormatOptions, formatValue } from '@perses-dev/core';
 import { use } from 'echarts/core';
 import { PieChart as EChartsPieChart } from 'echarts/charts';
-import { GridComponent, DatasetComponent, TitleComponent, TooltipComponent } from 'echarts/components';
+import {
+  GridComponent,
+  DatasetComponent,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponentOption,
+} from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import { Box } from '@mui/material';
 import { useChartsTheme } from '../context/ChartsProvider';
@@ -36,6 +42,7 @@ export interface PieChartProps {
   width: number;
   height: number;
   data: PieChartData[] | null;
+  legend?: LegendComponentOption;
 }
 
 export function PieChart(props: PieChartProps) {
@@ -54,17 +61,6 @@ export function PieChart(props: PieChartProps) {
       appendToBody: true,
       confine: true,
     },
-    legend: {
-      type: 'scroll',
-      orient: 'vertical',
-      right: 5,
-      top: 'auto',
-      bottom: 20,
-      data: data,
-      overflow: 'nameTruncate',
-      pageTextStyle: 'ellipsis',
-      animation: true,
-    },
     axisLabel: {
       overflow: 'truncate',
       width: width / 3,
@@ -73,9 +69,9 @@ export function PieChart(props: PieChartProps) {
       {
         name: 'Access From',
         type: 'pie',
-        radius: '55%',
+        radius: '65%',
         label: false,
-        center: ['30%', '50%'],
+        center: ['40%', '50%'],
         data: data,
         emphasis: {
           itemStyle: {

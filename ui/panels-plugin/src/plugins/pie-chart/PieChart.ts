@@ -13,7 +13,7 @@
 
 import { PanelPlugin } from '@perses-dev/plugin-system';
 import { createInitialBarChartOptions, PieChartOptions } from './pie-chart-model';
-// import { BarChartOptionsEditorSettings } from './BarChartOptionsEditorSettings';
+import { BarChartOptionsEditorSettings } from '/Users/kragarwa/perses/ui/panels-plugin/src/plugins/bar-chart/BarChartOptionsEditorSettings';
 import { PieChartPanel } from './PieChartPanel';
 
 /**
@@ -21,12 +21,12 @@ import { PieChartPanel } from './PieChartPanel';
  */
 export const PieChart: PanelPlugin<PieChartOptions> = {
   PanelComponent: PieChartPanel,
-  // panelOptionsEditorComponents: [
-  //   {
-  //     label: 'Settings',
-  //     content: BarChartOptionsEditorSettings,
-  //   },
-  // ],
+  panelOptionsEditorComponents: [
+    {
+      label: 'Settings',
+      content: BarChartOptionsEditorSettings,
+    },
+  ],
   supportedQueryTypes: ['TimeSeriesQuery'],
   createInitialOptions: createInitialBarChartOptions,
 };
