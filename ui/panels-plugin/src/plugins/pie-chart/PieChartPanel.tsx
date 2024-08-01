@@ -24,7 +24,7 @@ export type PieChartPanelProps = PanelProps<PieChartOptions>;
 
 export function PieChartPanel(props) {
   const {
-    spec: { calculation, sort, mode },
+    spec: { calculation, sort, mode, radius, visual },
     contentDimensions,
   } = props;
 
