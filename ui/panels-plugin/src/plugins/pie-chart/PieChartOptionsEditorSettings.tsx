@@ -26,8 +26,8 @@ import {
   OptionsEditorGrid,
   OptionsEditorColumn,
   SortSelector,
-  ThresholdsEditor,
-  ThresholdsEditorProps,
+  // ThresholdsEditor,
+  // ThresholdsEditorProps,
   SortSelectorProps,
   ModeSelector,
   ModeSelectorProps,
@@ -71,13 +71,13 @@ export function PieChartOptionsEditorSettings(props: PieChartOptionsEditorProps)
       })
     );
   };
-  const handleThresholdsChange: ThresholdsEditorProps['onChange'] = (thresholds) => {
-    onChange(
-      produce(value, (draft: PieChartOptions) => {
-        draft.thresholds = thresholds;
-      })
-    );
-  };
+  // const handleThresholdsChange: ThresholdsEditorProps['onChange'] = (thresholds) => {
+  //   onChange(
+  //     produce(value, (draft: PieChartOptions) => {
+  //       draft.thresholds = thresholds;
+  //     })
+  //   );
+  // };
 
   const handleSortChange: SortSelectorProps['onChange'] = (newSort: SortOption) => {
     onChange(
@@ -128,8 +128,6 @@ export function PieChartOptionsEditorSettings(props: PieChartOptionsEditorProps)
           <ModeSelector value={value.mode} onChange={handleModeChange} disablePercentageMode={isPercentUnit(format)} />
         </OptionsEditorGroup>
       </OptionsEditorColumn>
-      <ThresholdsEditor hideDefault thresholds={value.thresholds} onChange={handleThresholdsChange} />
-
       <OptionsEditorColumn>
         <QuerySettingsEditor querySettingsList={value.querySettings} onChange={handleQuerySettingsChange} />
         <OptionsEditorGroup title="Reset Settings">
@@ -143,8 +141,8 @@ export function PieChartOptionsEditorSettings(props: PieChartOptionsEditorProps)
                   draft.radius = undefined;
                   draft.legend = undefined;
                   draft.visual = undefined;
-                  draft.thresholds = undefined;
-                  draft.querySettings = undefined;
+                  // draft.thresholds = undefined;
+                  // draft.querySettings = undefined;
                 })
               );
             }}

@@ -282,7 +282,7 @@ export function TimeSeriesChartPanel(props: TimeSeriesChartProps) {
         seriesIndex++;
       });
     }
-
+    console.log({ legendItems });
     return {
       timeScale,
       timeChartData,
@@ -389,7 +389,7 @@ export function TimeSeriesChartPanel(props: TimeSeriesChartProps) {
     ...DEFAULT_TOOLTIP_CONFIG,
     enablePinning,
   };
-
+  console.log({ legend }, { legendItems }, { selectedLegendItems }, { legendColumns });
   return (
     <Box sx={{ padding: `${contentPadding}px` }}>
       <ContentWithLegend

@@ -22,7 +22,7 @@ import { calculatePercentages, sortSeriesData } from './utils';
 
 export type PieChartPanelProps = PanelProps<PieChartOptions>;
 
-export function PieChartPanel(props: PieChartPanelProps) {
+export function PieChartPanel(props) {
   const {
     spec: { calculation, sort, mode },
     contentDimensions,
@@ -50,11 +50,11 @@ export function PieChartPanel(props: PieChartPanelProps) {
       }
     }
 
-    const sortedBarChartData = sortSeriesData(pieChartData, sort);
+    const sortedPieChartData = sortSeriesData(pieChartData, sort);
     if (mode === 'percentage') {
-      return calculatePercentages(sortedBarChartData);
+      return calculatePercentages(sortedPieChartData);
     } else {
-      return sortedBarChartData;
+      return sortedPieChartData;
     }
   }, [queryResults, sort, mode, calculation]);
   console.log(pieChartData);
@@ -69,9 +69,12 @@ export function PieChartPanel(props: PieChartPanelProps) {
   return (
     <Box sx={{ padding: `${PADDING}px` }}>
       <PieChart
-        width={contentDimensions.width - PADDING * 2}
-        height={contentDimensions.height - PADDING * 2}
-        data={pieChartData}
+        width={0}
+        height={0}
+        data={null} // width={contentDimensions.width - PADDING * 2}
+        // height={contentDimensions.height - PADDING * 2}
+        // format={format}
+        // mode={mode}
       />
     </Box>
   );

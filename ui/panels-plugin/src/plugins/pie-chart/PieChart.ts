@@ -12,8 +12,8 @@
 // limitations under the License.
 
 import { PanelPlugin } from '@perses-dev/plugin-system';
-import { createInitialBarChartOptions, PieChartOptions } from './pie-chart-model';
-import { BarChartOptionsEditorSettings } from '/Users/kragarwa/perses/ui/panels-plugin/src/plugins/bar-chart/BarChartOptionsEditorSettings';
+import { createInitialPieChartOptions, PieChartOptions } from './pie-chart-model';
+import { PieChartOptionsEditorSettings } from '/Users/kragarwa/perses/ui/panels-plugin/src/plugins/pie-chart/PieChartOptionsEditorSettings';
 import { PieChartPanel } from './PieChartPanel';
 
 /**
@@ -24,9 +24,9 @@ export const PieChart: PanelPlugin<PieChartOptions> = {
   panelOptionsEditorComponents: [
     {
       label: 'Settings',
-      content: BarChartOptionsEditorSettings,
+      content: PieChartOptionsEditorSettings,
     },
   ],
   supportedQueryTypes: ['TimeSeriesQuery'],
-  createInitialOptions: createInitialBarChartOptions,
+  createInitialOptions: createInitialPieChartOptions,
 };
