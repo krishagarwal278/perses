@@ -13,7 +13,7 @@
 
 import { PieChart, PieChartData, LoadingOverlay, useChartsTheme } from '@perses-dev/components';
 import { Box } from '@mui/material';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { CalculationType, CalculationsMap } from '@perses-dev/core';
 import { useDataQueries, PanelProps } from '@perses-dev/plugin-system';
 // import { SeriesData } from 'echarts/types/dist/shared';
@@ -22,15 +22,13 @@ import { calculatePercentages, sortSeriesData } from './utils';
 
 export type PieChartPanelProps = PanelProps<PieChartOptions>;
 
-export function PieChartPanel(props) {
+export function PieChartPanel(props: PieChartPanelProps) {
   const {
-    spec: { calculation, sort, mode, radius, visual },
+    spec: { calculation, sort, mode },
     contentDimensions,
   } = props;
-
   const chartsTheme = useChartsTheme();
   const PADDING = chartsTheme.container.padding.default;
-
   const { queryResults, isLoading, isFetching } = useDataQueries('TimeSeriesQuery'); // gets data queries from a context provider, see DataQueriesProvider
   console.log(queryResults);
   const pieChartData: PieChartData[] = useMemo(() => {
@@ -49,7 +47,6 @@ export function PieChartPanel(props) {
         console.log({ series });
       }
     }
-
     const sortedPieChartData = sortSeriesData(pieChartData, sort);
     if (mode === 'percentage') {
       return calculatePercentages(sortedPieChartData);
@@ -59,13 +56,10 @@ export function PieChartPanel(props) {
   }, [queryResults, sort, mode, calculation]);
   console.log(pieChartData);
   if (queryResults[0]?.error) throw queryResults[0]?.error;
-
   if (contentDimensions === undefined) return null;
-
   if (isLoading || isFetching) {
     return <LoadingOverlay />;
   }
-
   return (
     <Box sx={{ padding: `${PADDING}px` }}>
       <PieChart

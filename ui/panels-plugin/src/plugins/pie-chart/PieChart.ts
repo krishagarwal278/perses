@@ -13,7 +13,7 @@
 
 import { PanelPlugin } from '@perses-dev/plugin-system';
 import { createInitialPieChartOptions, PieChartOptions } from './pie-chart-model';
-import { PieChartOptionsEditorSettings } from '/Users/kragarwa/perses/ui/panels-plugin/src/plugins/pie-chart/PieChartOptionsEditorSettings';
+import { PieChartOptionsEditorSettings } from './PieChartOptionsEditorSettings';
 import { PieChartPanel } from './PieChartPanel';
 
 /**

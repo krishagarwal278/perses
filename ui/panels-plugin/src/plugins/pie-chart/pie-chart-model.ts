@@ -30,11 +30,11 @@ export interface BarChartDefinition extends Definition<PieChartOptions> {
  * The Options object type supported by the BarChart panel plugin.
  */
 export interface PieChartOptions {
-  querySettings: Array<
-    import('/Users/kragarwa/perses/ui/panels-plugin/src/plugins/time-series-chart/time-series-chart-model').QuerySettingsOptions
-  >;
-  radius: undefined;
-  visual: undefined;
+  // querySettings: Array<
+  //   import('/Users/kragarwa/perses/ui/panels-plugin/src/plugins/time-series-chart/time-series-chart-model').QuerySettingsOptions
+  // >;
+  radius: number;
+  // visual: undefined;
   // thresholds: import('/Users/kragarwa/perses/ui/core/dist/index').ThresholdOptions;
   // querySettings: Array<
   //   import('/Users/kragarwa/perses/ui/panels-plugin/src/plugins/time-series-chart/time-series-chart-model').QuerySettingsOptions
@@ -55,7 +55,7 @@ export function createInitialPieChartOptions(): PieChartOptions {
   return {
     calculation: DEFAULT_CALCULATION,
     format: DEFAULT_FORMAT,
-    radius: DEFAULT_FORMAT,
+    radius: 50,
     // thresholds: DEFAULT_FORMAT,
     sort: DEFAULT_SORT,
     mode: DEFAULT_MODE,

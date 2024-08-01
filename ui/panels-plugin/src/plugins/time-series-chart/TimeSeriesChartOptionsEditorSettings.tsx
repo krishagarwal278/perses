@@ -41,6 +41,7 @@ export function TimeSeriesChartOptionsEditorSettings(props: TimeSeriesChartOptio
         draft.legend = newLegend;
       })
     );
+    console.log('Value.Legend', value.legend);
   };
 
   const handleVisualChange: VisualOptionsEditorProps['onChange'] = (newVisual) => {
