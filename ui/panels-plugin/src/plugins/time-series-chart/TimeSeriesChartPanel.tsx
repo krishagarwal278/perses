@@ -246,6 +246,9 @@ export function TimeSeriesChartPanel(props: TimeSeriesChartProps) {
       }
     }
 
+    console.log('TimeSeriesChartPanel > timeChartData: ', timeChartData)
+    console.log('TimeSeriesChartPanel > timeSeriesMapping: ', timeSeriesMapping)
+
     if (thresholds && thresholds.steps) {
       // Convert how thresholds are defined in the panel spec to valid ECharts 'line' series.
       // These are styled with predefined colors and a dashed style to look different than series from query results.
@@ -347,6 +350,8 @@ export function TimeSeriesChartPanel(props: TimeSeriesChartProps) {
     return null;
   }
 
+  console.log('TimeSeriesChartPanel > LegendColumns: ', legendColumns)
+
   if (isLoading || isFetching) {
     return <LoadingOverlay />;
   }
@@ -389,7 +394,7 @@ export function TimeSeriesChartPanel(props: TimeSeriesChartProps) {
     ...DEFAULT_TOOLTIP_CONFIG,
     enablePinning,
   };
-  console.log({ legend }, { legendItems }, { selectedLegendItems }, { legendColumns });
+  console.log("TimeSeriesChartOptionsEditorSettings > ", { legend }, { legendItems }, { selectedLegendItems }, { legendColumns });
   return (
     <Box sx={{ padding: `${contentPadding}px` }}>
       <ContentWithLegend

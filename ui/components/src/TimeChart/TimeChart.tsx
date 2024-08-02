@@ -207,6 +207,8 @@ export const TimeChart = forwardRef<ChartInstance, TimeChartProps>(function Time
     const updatedSeriesMapping =
       enablePinning && pinnedCrosshair !== null ? [...seriesMapping, pinnedCrosshair] : seriesMapping;
 
+    console.log('TimeChart.tsx > updatedSeriesMapping: ', updatedSeriesMapping);
+
     const option: EChartsCoreOption = {
       dataset: dataset,
       series: updatedSeriesMapping,

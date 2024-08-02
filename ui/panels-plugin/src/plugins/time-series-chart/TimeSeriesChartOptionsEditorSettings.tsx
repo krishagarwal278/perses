@@ -76,6 +76,7 @@ export function TimeSeriesChartOptionsEditorSettings(props: TimeSeriesChartOptio
     );
   };
 
+
   return (
     <OptionsEditorGrid>
       <OptionsEditorColumn>
